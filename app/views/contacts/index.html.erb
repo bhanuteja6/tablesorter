@@ -1,0 +1,36 @@
+<%= javascript_include_tag('jquery.min', 'jquery.tablesorter')%>
+
+<h1>Listing contacts</h1>
+
+<table  id="myTable" class="tablesorter" border = 1 bgcolor=#f4f4f4>
+  <tr>
+    <th>Name</th>
+    <th>Place</th>
+    <th>Cellno</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contacts.each do |contact| %>
+  <tr>
+    <td><%= contact.name %></td>
+    <td><%= contact.place %></td>
+    <td><%= contact.cellno %></td>
+    <td><%= link_to 'Show', contact %></td>
+    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+    <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contact', new_contact_path %>
+<script>
+$(document).ready(function() 
+    { 
+        $("#myTable").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+    } 
+);  
+</script>
